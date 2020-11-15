@@ -37,6 +37,3 @@ def process() :
 			save_file = sobe_filter(folder_name)
 		return jsonify({'filename' : save_file})
 	return "Hello"
-
-
-app.run(debug=True)
