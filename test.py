@@ -2,20 +2,18 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-bgr_image = cv2.imread("../Images/test.jpg")
+bgr_image = cv2.imread("../Images/hj.png")
 rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
 
 # kernel = np.ones((8,8),np.float32)/64
 # converted = cv2.filter2D(rgb_image,-1,kernel)
 
-# kernel = 5
-# converted = cv2.medianBlur(rgb_image,kernel)
 
-# kernel = 5
-# converted = cv2.medianBlur(rgb_image,kernel)
+kernel = 9
+converted = cv2.medianBlur(rgb_image,kernel)
 
-kernel = (9,9)
-converted =cv2.GaussianBlur(rgb_image,kernel,0)
+# kernel = (9,9)
+# converted =cv2.GaussianBlur(rgb_image,kernel,0)
 
 plt.subplot(121),plt.imshow(rgb_image),plt.title('Original')
 plt.xticks([]), plt.yticks([])

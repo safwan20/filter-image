@@ -34,7 +34,7 @@ def median_library(filename) :
     bgr_image = cv2.imread(filename)
     rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
 
-    kernel = 8
+    kernel = 9
     converted = cv2.medianBlur(rgb_image,kernel)
 
     file_name = ''.join(random.choice(string.ascii_lowercase) for i in range(16))
