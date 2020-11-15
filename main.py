@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
-from mean import mean_color
-from gaussian import gaussian_color
-from median import median_color
+from mean import mean_color, mean_library
+from gaussian import gaussian_color, gaussian_library
+from median import median_color, median_library
 from sobe import sobe_filter
 import logging
 
@@ -25,10 +25,10 @@ def process() :
 
 		if filtr == "mean" :
 			logging.debug("MEAN FILTER")
-			save_file = mean_color(folder_name)
+			save_file = mean_library(folder_name)
 		elif filtr == "gaussian" :
 			logging.debug("GAUSSIAN FILTER")
-			save_file = gaussian_color(folder_name)
+			save_file = gaussian_library(folder_name)
 		elif filtr == "median" :
 			logging.debug("MEDIAN FILTER")
 			save_file = median_color(folder_name)
@@ -37,3 +37,6 @@ def process() :
 			save_file = sobe_filter(folder_name)
 		return jsonify({'filename' : save_file})
 	return "Hello"
+
+
+app.run(debug=True)

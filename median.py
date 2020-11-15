@@ -30,15 +30,22 @@ def scratch() :
     plt.xticks([]), plt.yticks([])
     plt.show()
 
-def library() :
-    img = cv2.imread('Image/salt.png')
-    median = cv2.medianBlur(img, 5)
+def median_library(filename) :
+    bgr_image = cv2.imread(filename)
+    rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
 
-    plt.subplot(121),plt.imshow(img),plt.title('Original')
-    plt.xticks([]), plt.yticks([])
-    plt.subplot(122),plt.imshow(median),plt.title('Averaging')
-    plt.xticks([]), plt.yticks([])
-    plt.show()
+    kernel = 8
+    converted = cv2.medianBlur(rgb_image,kernel)
+
+    file_name = ''.join(random.choice(string.ascii_lowercase) for i in range(16))
+    file_name = file_name + '.jpg'
+
+    print(file_name)
+
+    final = Image.fromarray(converted) 
+    final.save('static/Filters_images/' + file_name)
+
+    return file_name
 
 def median_color(filename) :
     bgr_image = cv2.imread(filename)

@@ -35,15 +35,22 @@ def scratch() :
     plt.xticks([]), plt.yticks([])
     plt.show()
 
-def library() :
-    img = cv2.imread('Image/cup.jpg')
-    blur = cv2.GaussianBlur(img,(3,3),0)
+def gaussian_library(filename) :
+    bgr_image = cv2.imread(filename)
+    rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
 
-    plt.subplot(121),plt.imshow(img),plt.title('Original')
-    plt.xticks([]), plt.yticks([])
-    plt.subplot(122),plt.imshow(blur),plt.title('Averaging')
-    plt.xticks([]), plt.yticks([])
-    plt.show()
+    kernel = (9,9)
+    converted =cv2.GaussianBlur(rgb_image,kernel,0)
+
+    file_name = ''.join(random.choice(string.ascii_lowercase) for i in range(16))
+    file_name = file_name + '.jpg'
+
+    print(file_name)
+
+    final = Image.fromarray(converted) 
+    final.save('static/Filters_images/' + file_name)
+
+    return file_name
 
 def gaussian_color(filename) :
     bgr_image = cv2.imread(filename)

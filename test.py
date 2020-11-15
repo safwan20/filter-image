@@ -2,8 +2,27 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-img = cv2.imread('Image/test.jpg')
-# rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
+bgr_image = cv2.imread("../Images/test.jpg")
+rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
+
+# kernel = np.ones((8,8),np.float32)/64
+# converted = cv2.filter2D(rgb_image,-1,kernel)
+
+# kernel = 5
+# converted = cv2.medianBlur(rgb_image,kernel)
+
+# kernel = 5
+# converted = cv2.medianBlur(rgb_image,kernel)
+
+kernel = (9,9)
+converted =cv2.GaussianBlur(rgb_image,kernel,0)
+
+plt.subplot(121),plt.imshow(rgb_image),plt.title('Original')
+plt.xticks([]), plt.yticks([])
+plt.subplot(122),plt.imshow(converted),plt.title('Averaging')
+plt.xticks([]), plt.yticks([])
+plt.show()
+
 
 # r,g,b = cv2.split(rgb_image)
 
@@ -46,11 +65,3 @@ img = cv2.imread('Image/test.jpg')
 # plt.subplot(223),plt.imshow(converted),plt.title('new')
 # plt.xticks([]), plt.yticks([])
 # plt.show()
-
-
-
-kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
-im = cv2.filter2D(img, -1, kernel)
-plt.subplot(221),plt.imshow(im),plt.title('BGR')
-plt.xticks([]), plt.yticks([])
-plt.show()

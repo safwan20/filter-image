@@ -5,8 +5,8 @@ import random
 import string
 from matplotlib import pyplot as plt
 
-def scratch() :
-    bgr_image = cv2.imread('Image/dekh.png')
+def scratch(filename) :
+    bgr_image = cv2.imread(filename)
     rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
     image = cv2.cvtColor(rgb_image, cv2.COLOR_RGB2GRAY)
 
@@ -34,19 +34,22 @@ def scratch() :
     plt.xticks([]), plt.yticks([])
     plt.show()
 
-def library() :
-    img = cv2.imread('Image/test.jpg')
+def mean_library(filename) :
+    bgr_image = cv2.imread(filename)
+    rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
 
-    print(img.shape)
+    kernel = np.ones((8,8),np.float32)/64
+    converted = cv2.filter2D(rgb_image,-1,kernel)
 
-    kernel = np.ones((5,5),np.float32)/25
-    dst = cv2.filter2D(img,-1,kernel)
+    file_name = ''.join(random.choice(string.ascii_lowercase) for i in range(16))
+    file_name = file_name + '.jpg'
 
-    plt.subplot(121),plt.imshow(img),plt.title('Original')
-    plt.xticks([]), plt.yticks([])
-    plt.subplot(122),plt.imshow(dst),plt.title('Averaging')
-    plt.xticks([]), plt.yticks([])
-    plt.show()
+    print(file_name)
+
+    final = Image.fromarray(converted) 
+    final.save('static/Filters_images/' + file_name)
+
+    return file_name
 
 def mean_color(filename) :
     bgr_image = cv2.imread(filename)
