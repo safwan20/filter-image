@@ -31,7 +31,7 @@ def process() :
 			save_file = gaussian_library(folder_name)
 		elif filtr == "median" :
 			logging.debug("MEDIAN FILTER")
-			save_file = median_color(folder_name)
+			save_file = median_library(folder_name)
 		else :
 			logging.debug("SOBEL FILTER")
 			save_file = sobe_filter(folder_name)
